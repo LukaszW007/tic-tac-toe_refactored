@@ -1,36 +1,27 @@
 {
-  "name": "kolko-i-krzyzyk",
+  "name": "tic-tac-toe_refactored.git",
   "version": "1.0.0",
   "description": "simple tic_tac_toe game",
   "main": "index.js",
   "scripts": {
-    "startdev": "webpack-dev-server --config ./webpack.config.js",
-    "start": "webpack",
+    "build": "node_modules/.bin/babel src --out-file build/main-compiled.js --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LukaszW007/kolko-i-krzyzyk.git"
+    "url": "git+https://github.com/LukaszW007/tic-tac-toe_refactored.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/LukaszW007/kolko-i-krzyzyk/issues"
+    "url": "https://github.com/LukaszW007/tic-tac-toe_refactored/issues"
   },
-  "homepage": "https://github.com/LukaszW007/kolko-i-krzyzyk#readme",
+  "homepage": "https://github.com/LukaszW007/tic-tac-toe_refactored#readme",
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.3",
-    "babel-preset-latest": "^6.24.1",
-    "webpack": "^3.0.0",
-    "webpack-cli": "^2.0.10",
-    "webpack-dev-server": "^2.11.2"
-  },
-  "devDependencies": {
-    "css-loader": "^3.2.0",
-    "html-webpack-plugin": "^3.2.0",
-    "style-loader": "^1.0.0"
+    "babel-preset-latest": "^6.24.1"
   }
 }
