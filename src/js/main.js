@@ -43,22 +43,22 @@ const nextTurn = () => {
 
 currentPlayerToSpan(currentPlayer);
 
+const currentStateUpdate = ( playerName, playerSpots, spotNumber ) => {
+    playerSpots.push(spotNumber);
+    console.log( playerSpots + ': ' + xSpots);
+    checkWinner( playerName, playerSpots);
+};
+
 let currentState = (spotNumber) => {
     if (xSpots.length === 5) newGame();
     if (currentPlayer === 'X' && !xSpots.includes(spotNumber)) {
-        xSpots.push(spotNumber);
-        console.log('xSpots: ' + xSpots);
-        checkWinner('X', xSpots);
+        currentStateUpdate('X', xSpots, spotNumber);
     } else if (currentPlayer === 'O' && !oSpots.includes(spotNumber)) {
-        oSpots.push(spotNumber);
-        console.log('oSpots: ' + oSpots);
-        checkWinner('O', oSpots);
+        currentStateUpdate('O', oSpots, spotNumber);
     }
 };
 
 let winningRules = (chosenSpots, winArray) => {
-    // console.log('chosenSpots: ' + chosenSpots);
-    // console.log('winArray: ' + winArray);
     var counter = 0;
     chosenSpots.forEach(value => {
         if (winArray.includes(parseInt(value))) {
@@ -73,13 +73,14 @@ let winningRules = (chosenSpots, winArray) => {
 let checkWinner = (player, spot) => {
     console.log('spot: ' + spot);
     if (winningRules(spot, winArray1) || winningRules(spot, winArray2) || winningRules(spot, winArray3) || winningRules(spot, winArray4) || winningRules(spot, winArray5) || winningRules(spot, winArray6) || winningRules(spot, winArray7) || winningRules(spot, winArray8)) {
-        //winner = player;
         console.log(player + ' is the winner');
         let winnerName = document.getElementsByClassName('winner-name');
         winnerName[0].innerHTML = currentPlayer;
         document.getElementsByClassName('order')[0].style.visibility = 'hidden';
         document.getElementsByClassName('board')[0].style.visibility = 'hidden';
         document.getElementsByClassName('winner')[0].style.visibility = 'visible';
+        console.log("Winner is: " + winner);
+        addToWinnersList(player);
     }
 };
 
@@ -89,6 +90,13 @@ const clickHandler = (e) => {
     e.target.innerHTML = currentPlayer;
     currentState(e.target.className);
     nextTurn();
+};
+
+const addToWinnersList = (winner) => {
+    const listOfWinners = document.getElementsByClassName("winners-list")[0];
+    const winnersListElement = document.createElement('li');
+    winnersListElement.appendChild(document.createTextNode("Winner is " + winner));
+    listOfWinners.appendChild(winnersListElement);
 };
 
 document.querySelectorAll('td')
